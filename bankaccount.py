@@ -1,6 +1,5 @@
 # A BANK ACCOUNT SYSTEM
 
-#Progress: start on working on transfering money between the savings account and checkings account!!!
 
 import sys
 import random 
