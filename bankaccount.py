@@ -128,7 +128,6 @@ class Account:
                         return (self.source_account, self.destination_account, self.amount_to_transfer)
                     else:
                         print("Please enter a value greater than $0.00.")
-                        
 
             
     def general_statement(): ...
@@ -203,8 +202,9 @@ def options_2(account):
             account.check_balance()
             print(account)
         elif option2 == 5:
-            account.transfer_money()
-            print(account)
+            transfer_details = account.transfer_money()
+            source, destination, amount = transfer_details
+            print(source, destination, amount)
         elif option2 == 6:
             ...
         elif option2 == 7:
