@@ -9,6 +9,13 @@ import random
 class Account: 
     def __init__(self):
         self.balance = 0
+        self.options1 = ["1. Create Account", "2. Quit"]
+        self.options3 = [
+                            "1. Create Account", "2. Deposit money", "3. Withdraw money",
+                            "4. Check Balance", "5. Transfer money", "6. General statement",
+                            "7. Quit"
+                            ]
+        self.options2 = ["1. Savings", "2. Checkings", "3. Credit", "4. Quit"]
 
 
     # the method that prints the object.
@@ -20,10 +27,9 @@ class Account:
     # a method that returns the user to initially create an account
     def initial_options(self):
         while True:
-            self.options = ["1. Create Account", "2. Quit"]
             print()
             print("Main Menu")
-            self.option = self.choose_option(self.options)
+            self.option = self.choose_option(self.options1)
             if self.option >= 1 and self.option < 3:
                 return (self.option )
             elif self.option == False:
@@ -35,12 +41,8 @@ class Account:
     # a method that prompts the user with the various options in the system e.g depositing money and returns the chosen option
     def second_options(self):
         while True:
-            self.options = [
-                            "1. Create Account", "2. Deposit money", "3. Withdraw money",
-                            "4. Check Balance", "5. Transfer money", "6. General statement",
-                            "7. Quit"
-                            ]
-            self.option = self.choose_option(self.options)
+            
+            self.option = self.choose_option(self.options3)
             if self.option >= 1 and self.option < 8:
                 return (self.option)
             elif self.option == False:
@@ -51,8 +53,8 @@ class Account:
 
     # a method that prompts the user to choose which exact account they want to create.
     def third_options(self):
-        self.options = ["1. Savings", "2. Checkings", "3. Credit", "4. Quit"]
-        self.option = self.choose_option(self.options)
+        
+        self.option = self.choose_option(self.options2)
         if self.option >= 1 and self.option < 5:
             return (self.option)
         elif self.option == False:
@@ -110,6 +112,8 @@ class Account:
 
     def transfer_money(self): 
         ...
+
+
     def general_statement(): ...
     def exit_program(self):
         sys.exit("Goodbye!👋")
