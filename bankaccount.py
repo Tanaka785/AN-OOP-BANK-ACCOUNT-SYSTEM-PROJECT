@@ -51,14 +51,15 @@ class Account:
 
     # a method that prompts the user to choose which exact account they want to create.
     def third_options(self):
-        self.options = ["1. Savings", "2. Checkings", "3. Credit", "4. Quit"]
-        self.option = self.choose_option(self.options)
-        if self.option >= 1 and self.option < 5:
-            return (self.option)
-        elif self.option == False:
-            pass 
-        else:
-            print("Invalid option! Choose option in the range given![1 - 4]")
+        while True:
+            self.options = ["1. Savings", "2. Checkings", "3. Credit", "4. Quit"]
+            self.option = self.choose_option(self.options)
+            if self.option >= 1 and self.option < 5:
+                return (self.option)
+            elif self.option == False:
+                pass 
+            else:
+                print("Invalid option! Choose option in the range given![1 - 4]")
 
 
     # a method to validate and allow users to choose an option
@@ -69,7 +70,7 @@ class Account:
                 print(option)
             print()
             try:
-                self.option = int(input("Choose an option: ").strip())
+                self.option = int(input("CHOOSE AN OPTION: ").strip())
                 return (self.option)
             except ValueError:
                 print("Please enter a valid integer value for the option!")
@@ -79,7 +80,7 @@ class Account:
     def deposit(self):
         while True:
             try:
-                self.amount_to_deposit = float(input("How much do you want to deposit: ").strip())
+                self.amount_to_deposit = float(input("HOW MUCH DO YOU WANT TO DEPOSIT: ").strip())
             except ValueError:
                 print("Please enter a valid amount to deposit!")
             else:
@@ -93,7 +94,7 @@ class Account:
     def withdraw(self): 
          while True:
             try:
-                self.amount_to_withdraw = float(input("How much do you want to withdraw: ").strip())
+                self.amount_to_withdraw = float(input("HOW MUCH DO YOU WANT TO WITHDRAW: ").strip())
             except ValueError:
                 print("Please enter a valid amount to withdraw!")
             else:
@@ -111,8 +112,23 @@ class Account:
     def transfer_money(self): 
         while True:
             print()
-            print("Choose Source account to transfer money from")
+            print("CHOOSE THE SOURCE ACCOUNT TO TRANSFER MONEY FROM")
             self.source_account = self.third_options()
+            print()
+            print("CHOOSE THE DESTINATION ACCOUNT: ")
+            self.destination_account = self.third_options()
+            print()
+            while True:
+                try:
+                    self.amount_to_transfer = float(input("ENTER AMOUNT YOU WANT TO TRANSFER: ").strip())
+                except ValueError:
+                    print("Please enter a valid amount!")
+                else:
+                    if self.amount_to_transfer > 0:
+                        return (self.source_account, self.destination_account, self.amount_to_transfer)
+                    else:
+                        print("Please enter a value greater than $0.00.")
+                        
 
             
     def general_statement(): ...
@@ -141,7 +157,7 @@ class Credit_account(Account):
     def borrow_money(self): 
         while True:
             try:
-                self.amount_to_borrow = float(input("How much do you want to borrow: ").strip())
+                self.amount_to_borrow = float(input("HOW MUCH DO YOU WANT TO BORROW: ").strip())
             except ValueError:
                 print("Please enter a valid amount to borrow!")
             else:
