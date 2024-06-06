@@ -114,9 +114,11 @@ class Account:
             print()
             print("CHOOSE THE SOURCE ACCOUNT TO TRANSFER MONEY FROM")
             self.source_account = self.third_options()
+            self.source_account = self.validate_option_on_transfer(self.source_account)
             print()
             print("CHOOSE THE DESTINATION ACCOUNT: ")
             self.destination_account = self.third_options()
+            self.destination_account = self.validate_option_on_transfer(self.destination_account)
             print()
             while True:
                 try:
@@ -129,7 +131,16 @@ class Account:
                     else:
                         print("Please enter a value greater than $0.00.")
 
+
+    def validate_option_on_transfer(self, choice):
+        self.choice = choice
+        while True:
+            if self.choice > 2:
+                print("Choose either '1' or '2'")
+            else:
+                return (self.choice)
             
+
     def general_statement(): ...
     def exit_program(self):
         sys.exit("Goodbye!👋")
@@ -172,9 +183,14 @@ class Credit_account(Account):
     def check_payment_due_date(self): ...
 
 
+account = Account()
+savings = Savings_account()
+checkings = Checkings_account()
+credit = Credit_account()
+
 def main(): 
     options_1()
-
+    
 
 def options_1():
     account = Account()
@@ -204,7 +220,8 @@ def options_2(account):
         elif option2 == 5:
             transfer_details = account.transfer_money()
             source, destination, amount = transfer_details
-            print(source, destination, amount)
+            if source == 1:
+                ...
         elif option2 == 6:
             ...
         elif option2 == 7:
