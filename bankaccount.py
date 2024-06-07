@@ -30,7 +30,6 @@ class Account:
     # a method that returns the user to initially create an account
     def initial_options(self):
         while True:
-            print()
             print("Main Menu")
             self.option = self.choose_option(self.options1)
             if self.option >= 1 and self.option < 3:
@@ -144,13 +143,22 @@ class Account:
                             "Please enter a value greater than $0.00. And also make sure you have sufficient funds in your account!"
                         )
     def choose_transfer_option(self):
-        print()
+        while True:
+            print()
+            for option in self.transfer_options:
+                print(option)
+            try:
+                self.option = int(input("CHOOSE AN OPTION: "))
+            except ValueError:
+                print("Please enter a valid integer value for the option!")
+            else:
+                return (self.option)
         
     # a method to get the source account from the user
     def get_source_account(self):
         while True:
             print("CHOOSE THE SOURCE ACCOUNT TO TRANSFER MONEY FROM")
-            self.source_account = self.third_options()
+            self.source_account = self.choose_transfer_option()
             if self.validate_source_and_destination(self.source_account):
                 return self.source_account
 
@@ -158,7 +166,7 @@ class Account:
     def get_destination_account(self):
         while True:
             print("CHOOSE THE DESTINATION ACCOUNT: ")
-            self.destination_account = self.third_options()
+            self.destination_account = self.choose_transfer_option()
             if self.validate_source_and_destination(self.destination_account):
                 return self.destination_account
             
