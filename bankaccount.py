@@ -53,13 +53,14 @@ class Account:
 
     # a method that prompts the user to choose which exact account they want to create.
     def third_options(self):
-        self.option = self.choose_option(self.options2)
-        if self.option >= 1 and self.option < 5:
-            return self.option
-        elif self.option == False:
-            pass
-        else:
-            print("Invalid option! Choose option in the range given![1 - 4]")
+        while True:
+            self.option = self.choose_option(self.options2)
+            if self.option >= 1 and self.option < 5:
+                return self.option
+            elif self.option == False:
+                pass
+            else:
+                print("Invalid option! Choose option in the range given![1 - 4]")
 
     # a method to validate and allow users to choose an option
     def choose_option(self, options):
