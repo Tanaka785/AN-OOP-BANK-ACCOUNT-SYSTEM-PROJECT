@@ -183,11 +183,6 @@ class Credit_account(Account):
     def check_payment_due_date(self): ...
 
 
-account = Account()
-savings = Savings_account()
-checkings = Checkings_account()
-credit = Credit_account()
-
 def main(): 
     options_1()
     
