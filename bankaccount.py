@@ -36,6 +36,7 @@ class Account:
             else:
                 print("Invalid option! Choose either '1' or '2'")
 
+
     # a method that prompts the user with the various options in the system e.g depositing money and returns the chosen option
     def second_options(self):
         while True:
@@ -71,6 +72,7 @@ class Account:
         except ValueError:
             print("Please enter a valid integer value for the option!")
             return False
+
 
     def deposit(self):
         while True:
@@ -147,7 +149,7 @@ class Account:
         while True:
             print("CHOOSE THE DESTINATION ACCOUNT: ")
             self.destination_account = self.third_options()
-            if self.validate_source_and_destination(self.source_account):
+            if self.validate_source_and_destination(self.destination_account):
                 return (self.destination_account)
             
 
