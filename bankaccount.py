@@ -11,17 +11,21 @@ class Account:
         self.balance = 0
         self.options1 = ["1. Create Account", "2. Quit"]
         self.options3 = [
-                            "1. Create Account", "2. Deposit money", "3. Withdraw money",
-                            "4. Check Balance", "5. Transfer money", "6. General statement",
-                            "7. Quit"
-                            ]
+            "1. Create Account",
+            "2. Deposit money",
+            "3. Withdraw money",
+            "4. Check Balance",
+            "5. Transfer money",
+            "6. General statement",
+            "7. Quit",
+        ]
         self.options2 = ["1. Savings", "2. Checkings", "3. Credit", "4. Quit"]
+
 
     # the method that prints the object.
     def __str__(self):
         print()
         return f"Account balance: ${self.balance:.2f}"
-
 
     # a method that returns the user to initially create an account
     def initial_options(self):
@@ -35,7 +39,6 @@ class Account:
                 pass
             else:
                 print("Invalid option! Choose either '1' or '2'")
-
 
     # a method that prompts the user with the various options in the system e.g depositing money and returns the chosen option
     def second_options(self):
@@ -52,12 +55,11 @@ class Account:
     def third_options(self):
         self.option = self.choose_option(self.options2)
         if self.option >= 1 and self.option < 5:
-            return (self.option)
+            return self.option
         elif self.option == False:
-            pass 
+            pass
         else:
             print("Invalid option! Choose option in the range given![1 - 4]")
-
 
     # a method to validate and allow users to choose an option
     def choose_option(self, options):
@@ -73,7 +75,7 @@ class Account:
             print("Please enter a valid integer value for the option!")
             return False
 
-
+    # a method for allowing the user to deposit money into their account
     def deposit(self):
         while True:
             try:
@@ -89,7 +91,7 @@ class Account:
                     self.balance += self.amount_to_deposit
                     return self.balance
 
-
+    # a method that allows users to withdraw money from their account
     def withdraw(self):
         while True:
             try:
@@ -106,12 +108,12 @@ class Account:
                 else:
                     self.balance -= self.amount_to_withdraw
                     return self.balance
-
-
+                
+    # a method that allows the user to check their respective account balance
     def check_balance(self):
         return self.balance
-    
 
+    # a method that allows the transfer of money between the savings account and checkings account
     def transfer_money(self):
         while True:
             print()
@@ -127,42 +129,49 @@ class Account:
                 except ValueError:
                     print("Please enter a valid amount!")
                 else:
-                    if self.amount_to_transfer > 0 and (self.balance) > self.amount_to_transfer:
+                    if (
+                        self.amount_to_transfer > 0
+                        and (self.balance) > self.amount_to_transfer
+                    ):
                         return (
                             self.source_account,
                             self.destination_account,
                             self.amount_to_transfer,
                         )
                     else:
-                        print("Please enter a value greater than $0.00. And also make sure you have sufficient funds in your account!")
+                        print(
+                            "Please enter a value greater than $0.00. And also make sure you have sufficient funds in your account!"
+                        )
 
-
+    # a method to get the source account from the user
     def get_source_account(self):
         while True:
             print("CHOOSE THE SOURCE ACCOUNT TO TRANSFER MONEY FROM")
             self.source_account = self.third_options()
             if self.validate_source_and_destination(self.source_account):
-                return (self.source_account)
-            
+                return self.source_account
 
+    # a method to get the destination account to transfer money to.
     def get_destination_account(self):
         while True:
             print("CHOOSE THE DESTINATION ACCOUNT: ")
             self.destination_account = self.third_options()
             if self.validate_source_and_destination(self.destination_account):
-                return (self.destination_account)
+                return self.destination_account
             
-
+    # a method that validates the user's selected account to transfer/send money to.
     def validate_source_and_destination(self, choice):
-        self.choice = choice 
+        self.choice = choice
         if (self.choice) > 0 and (self.choice) < 3:
             return True
         else:
             print("Enter either '1' or '2'.")
             return False
 
-
+    # a method to generate a general statement of the user's transactionss
     def general_statement(): ...
+
+    
     def exit_program(self):
         sys.exit("Goodbye!👋")
 
@@ -250,9 +259,11 @@ def options_2(account):
                 )
                 print(f"Checkings account balance is now: ${checkings.balance:.2f}")
             elif source == 2:
-                checkings.balance -= amount 
-                savings.balance += amount 
-                print(f"${amount:.2f} was successfully transferred from 'checkings' account to 'savings' account. Checkings balance is now: ${checkings.balance:.2f} ")
+                checkings.balance -= amount
+                savings.balance += amount
+                print(
+                    f"${amount:.2f} was successfully transferred from 'checkings' account to 'savings' account. Checkings balance is now: ${checkings.balance:.2f} "
+                )
                 print(f"Savings balance is now: ${savings.balance:.2f}")
         elif option2 == 6:
             ...
