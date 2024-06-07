@@ -20,7 +20,7 @@ class Account:
             "7. Quit",
         ]
         self.options2 = ["1. Savings", "2. Checkings", "3. Credit", "4. Quit"]
-
+        self.transfer_options = ["1. Savings", "2. Checkings"]
 
     # the method that prints the object.
     def __str__(self):
@@ -143,7 +143,9 @@ class Account:
                         print(
                             "Please enter a value greater than $0.00. And also make sure you have sufficient funds in your account!"
                         )
-
+    def choose_transfer_option(self):
+        print()
+        
     # a method to get the source account from the user
     def get_source_account(self):
         while True:
