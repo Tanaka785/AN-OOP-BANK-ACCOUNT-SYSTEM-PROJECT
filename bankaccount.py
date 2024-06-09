@@ -227,7 +227,6 @@ class Credit_account(Account):
 account = Account()
 savings = Savings_account()
 checkings = Checkings_account()
-credit = Credit_account()
 
 
 def main():
@@ -292,9 +291,9 @@ def options_3(account):
     elif option3 == 2:
         print(f"Checkings account created successfully! {checkings}")
         options_2(checkings)
-    elif options_2 == 3:
+    elif option3 == 3:
+        credit = Credit_account()
         print(f"Credit account created successfully! {credit}")
-        ...
     elif option3 == 4:
         account.exit_program()
 
