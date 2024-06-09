@@ -24,7 +24,6 @@ class Account:
 
     # the method that prints the object.
     def __str__(self):
-        print()
         return f"Account balance: ${self.balance:.2f}"
 
     # a method that returns the user to initially create an account
