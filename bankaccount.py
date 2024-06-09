@@ -7,6 +7,8 @@ from datetime import datetime, timedelta
 import sys
 from fpdf import FPDF
 from tabulate import tabulate
+import validators
+import re
 
 
 class Account:
@@ -27,12 +29,39 @@ class Account:
 
     # the method that prints the object.
     def __str__(self):
-        print()
         return f"Account balance: ${self.balance:.2f}"
+
+
+    # a function for user registration
+    def signup(self):
+        print()
+        print("Fill in your details")
+        print()
+        while True:
+            self.name = input("Username: ")
+            if self.name:
+                break
+            else:
+                print("Come on now😉 Please enter your username!")
+        while True:
+            self.email_address = input("Email: ")
+            if validators.email(self.email_address):
+                break
+            else:
+                print("Invalid email!")
+        while True:
+            self.password = input("Email password: ")
+            if re.search(r"[0-9]", self.password) and len(self.password) >= 4:
+                break
+            else:
+                print("Password should have at least 1 number! and should be four characters or more.")
+                
+            
 
     # a method that returns the user to initially create an account
     def initial_options(self):
         while True:
+            print()
             print("Main Menu")
             self.option = self.choose_option(self.options1)
             if self.option >= 1 and self.option < 3:
@@ -230,7 +259,7 @@ class Credit_account(Account):
 account = Account()
 savings = Savings_account()
 checkings = Checkings_account()
-
+credit = Credit_account()
 
 def main():
     options_1()
@@ -240,6 +269,9 @@ def main():
 def options_1():
     option1 = account.initial_options()
     if option1 == 1:
+        account.signup()
+        print()
+        print("Choose an account to create: ")
         options_3(account)
     elif option1 == 2:
         account.exit_program()
@@ -301,7 +333,6 @@ def options_3(account):
         print(f"Checkings account created successfully! {checkings}")
         options_2(checkings)
     elif option3 == 3:
-        credit = Credit_account()
         print(f"Credit account created successfully! {credit}")
     elif option3 == 4:
         account.exit_program()
