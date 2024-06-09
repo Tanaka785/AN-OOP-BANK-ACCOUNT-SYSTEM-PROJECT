@@ -2,9 +2,7 @@
 
 
 import sys
-import random
 from datetime import datetime, timedelta
-import sys
 from fpdf import FPDF
 from tabulate import tabulate
 
@@ -25,10 +23,12 @@ class Account:
         self.options2 = ["1. Savings", "2. Checkings", "3. Credit", "4. Quit"]
         self.transfer_options = ["1. Savings", "2. Checkings"]
 
+
     # the method that prints the object.
     def __str__(self):
         print()
         return f"Account balance: ${self.balance:.2f}"
+
 
     # a method that returns the user to initially create an account
     def initial_options(self):
@@ -41,6 +41,7 @@ class Account:
                 pass
             else:
                 print("Invalid option! Choose either '1' or '2'")
+
 
     # a method that prompts the user with the various options in the system e.g depositing money and returns the chosen option
     def second_options(self):
@@ -183,8 +184,9 @@ class Account:
             return False
 
     # a method to generate a general statement of the user's transactionss
-    def general_statement(): ...
-
+    def general_statement(): 
+        headings = ["Date", "Transaction", "Balance"]
+        
     
     def exit_program(self):
         sys.exit("Goodbye!👋")
