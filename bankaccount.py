@@ -234,8 +234,8 @@ def main():
     options_1()
 
 
+# a function that allows the user to create an account
 def options_1():
-    # account = Account()
     option1 = account.initial_options()
     if option1 == 1:
         options_3(account)
@@ -243,6 +243,7 @@ def options_1():
         account.exit_program()
 
 
+# a function that allows users to choose various options in the system. e.g. depositing money/withdrawing money
 def options_2(account):
     while True:
         option2 = account.second_options()
@@ -282,19 +283,17 @@ def options_2(account):
             account.exit_program()
 
 
+# a function that allows users to choose which specific account exactly they want to create. whether: savings, credit or checkings
 def options_3(account):
     option3 = account.third_options()
     if option3 == 1:
-        # savings = Savings_account()
-        print(savings)
+        print(f"Savings account created successfully! {savings}")
         options_2(savings)
     elif option3 == 2:
-        # checkings = Checkings_account()
-        print(checkings)
+        print(f"Checkings account created successfully! {checkings}")
         options_2(checkings)
     elif options_2 == 3:
-        # credit = Credit_account()
-        print(credit)
+        print(f"Credit account created successfully! {credit}")
         ...
     elif option3 == 4:
         account.exit_program()
