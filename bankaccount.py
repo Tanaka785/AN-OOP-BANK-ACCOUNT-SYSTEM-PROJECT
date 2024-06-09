@@ -266,16 +266,22 @@ def options_2(account):
                 savings.balance -= amount
                 checkings.balance += amount
                 print(
-                    f"${amount:.2f} was successfully transfered from 'savings' account to 'checkings' account. Savings balance is now: ${savings.balance:.2f}"
+                    f"${amount:.2f} was successfully transfered from 'savings' account to 'checkings' account."
                 )
-                print(f"Checkings account balance is now: ${checkings.balance:.2f}")
+                print()
+                print("New balances: ")
+                print(f"Savings: ${savings.balance:.2f}")
+                print(f"Checkings: ${checkings.balance:.2f}")
             elif source == 2:
                 checkings.balance -= amount
                 savings.balance += amount
                 print(
-                    f"${amount:.2f} was successfully transferred from 'checkings' account to 'savings' account. Checkings balance is now: ${checkings.balance:.2f} "
+                    f"${amount:.2f} was successfully transferred from 'checkings' account to 'savings' account."
                 )
-                print(f"Savings balance is now: ${savings.balance:.2f}")
+                print()
+                print(f"New balances: ")
+                print(f'Checkings: ${checkings.balance:.2f}')
+                print(f"Savings: ${savings.balance:.2f}")
         elif option2 == 6:
             ...
         elif option2 == 7:
