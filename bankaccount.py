@@ -147,39 +147,51 @@ class Account:
                     self.statement_records(self.record)
                     return self.balance
                 
+                
     # a method that allows the user to check their respective account balance
     def check_balance(self):
         return self.balance
 
+
     # a method that allows the transfer of money between the savings account and checkings account
-    def transfer_money(self):
+    def get_transfer_details(self):
         while True:
-            print()
             self.source_account = self.get_source_account()
-            print()
-            self.destination_account = self.get_destination_account()
-            print()
-            while True:
-                try:
-                    self.amount_to_transfer = float(
-                        input("ENTER AMOUNT YOU WANT TO TRANSFER: ").strip()
-                    )
-                except ValueError:
-                    print("Please enter a valid amount!")
+            try:
+                self.amount_to_transfer = float(
+                    input("ENTER AMOUNT YOU WANT TO TRANSFER: ").strip()
+                )
+            except ValueError:
+                print("Please enter a valid amount!")
+            else:
+                if (
+                    self.amount_to_transfer > 0
+                    and (self.balance) > self.amount_to_transfer
+                ):
+                    self.transfer_money(self.source_account, self.amount_to_transfer)
+                    break
                 else:
-                    if (
-                        self.amount_to_transfer > 0
-                        and (self.balance) > self.amount_to_transfer
-                    ):
-                        return (
-                            self.source_account,
-                            self.destination_account,
-                            self.amount_to_transfer,
-                        )
-                    else:
-                        print(
-                            "Please enter a value greater than $0.00. And also make sure you have sufficient funds in your account!"
-                        )
+                    print(
+                        "Please enter a value greater than $0.00. And also make sure you have sufficient funds in your account!"
+                    )
+
+
+    def transfer_money(self, source, amount):
+        self.source_account = source 
+        self.amount = amount 
+        if self.source_account == 1:
+            checkings.balance += self.amount
+            savings.balance -= self.amount
+            print(f"${self.amount:.2f} transfered successfuly from 'savings' to 'checkings'")
+        elif self.source_account == 2:
+            savings.balance += self.amount
+            checkings.balance -= self.amount
+            print(f"${self.amount:.2f} transferred successfully from 'checkings' to 'savings'")
+        print()
+        print("New balances: ")
+        print(f"Savings: ${savings.balance:.2f}")
+        print(f"Checkings: ${checkings.balance:.2f}")
+
 
     def choose_transfer_option(self):
         while True:
@@ -193,6 +205,7 @@ class Account:
             else:
                 return (self.option)
         
+
     # a method to get the source account from the user
     def get_source_account(self):
         while True:
@@ -201,13 +214,6 @@ class Account:
             if self.validate_source_and_destination(self.source_account):
                 return self.source_account
 
-    # a method to get the destination account to transfer money to.
-    def get_destination_account(self):
-        while True:
-            print("CHOOSE THE DESTINATION ACCOUNT: ")
-            self.destination_account = self.choose_transfer_option()
-            if self.validate_source_and_destination(self.destination_account):
-                return self.destination_account
             
     # a method that validates the user's selected account to transfer/send money to.
     def validate_source_and_destination(self, choice):
@@ -309,32 +315,7 @@ def options_2(account):
             account.check_balance()
             print(account)
         elif option2 == 5:
-            transfer_details = account.transfer_money()
-            source, destination, amount = transfer_details
-            if source == 1:
-                savings.balance -= amount
-                checkings.balance += amount
-                record = [date.today(), "Transfer", f"${amount:.2f}(Savings)"]
-                savings.statement_records(record)
-                print(
-                    f"${amount:.2f} was successfully transfered from 'savings' account to 'checkings' account."
-                )
-                print()
-                print("New balances: ")
-                print(f"Savings: ${savings.balance:.2f}")
-                print(f"Checkings: ${checkings.balance:.2f}")
-            elif source == 2:
-                checkings.balance -= amount
-                savings.balance += amount
-                record = [date.today(), "Transfer", f"${amount:.2f}(Checkings)"]
-                checkings.statement_records(record)
-                print(
-                    f"${amount:.2f} was successfully transferred from 'checkings' account to 'savings' account."
-                )
-                print()
-                print(f"New balances: ")
-                print(f'Checkings: ${checkings.balance:.2f}')
-                print(f"Savings: ${savings.balance:.2f}")
+            account.get_transfer_details()
         elif option2 == 6:
             account.generate_statement()
         elif option2 == 7:
