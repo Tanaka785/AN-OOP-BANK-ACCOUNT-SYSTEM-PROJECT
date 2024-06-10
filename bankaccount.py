@@ -3,7 +3,7 @@
 
 import sys
 import random
-from datetime import datetime, timedelta
+from datetime import date
 import sys
 from fpdf import FPDF
 from tabulate import tabulate
@@ -26,6 +26,7 @@ class Account:
         ]
         self.options2 = ["1. Savings", "2. Checkings", "3. Credit", "4. Quit"]
         self.transfer_options = ["1. Savings", "2. Checkings"]
+        self.table = [["Date", "Transaction", "Balance"]]
 
     # the method that prints the object.
     def __str__(self):
@@ -122,6 +123,8 @@ class Account:
                     print("Deposit is only allowed from $1.00 and above! Try again..")
                 else:
                     self.balance += self.amount_to_deposit
+                    self.record = [date.today(), "Deposit", f"${self.amount_to_deposit:.2f}"]
+                    self.statement_records(self.record)
                     return self.balance
 
     # a method that allows users to withdraw money from their account
@@ -175,6 +178,7 @@ class Account:
                         print(
                             "Please enter a value greater than $0.00. And also make sure you have sufficient funds in your account!"
                         )
+
     def choose_transfer_option(self):
         while True:
             print()
@@ -213,9 +217,16 @@ class Account:
             return False
 
     # a method to generate a general statement of the user's transactionss
-    def general_statement(): ...
-
+    def statement_records(self, record):
+        self.record = record
+        self.table.append(self.record)
     
+
+    # a method that prints the statement
+    def generate_statement(self):
+        print(tabulate(self.table, headers="firstrow", tablefmt="grid"))
+
+
     def exit_program(self):
         sys.exit("Goodbye!👋")
 
@@ -319,7 +330,7 @@ def options_2(account):
                 print(f'Checkings: ${checkings.balance:.2f}')
                 print(f"Savings: ${savings.balance:.2f}")
         elif option2 == 6:
-            ...
+            account.generate_statement()
         elif option2 == 7:
             account.exit_program()
 
