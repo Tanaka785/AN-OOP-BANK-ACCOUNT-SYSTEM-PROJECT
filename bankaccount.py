@@ -39,19 +39,20 @@ class Account:
                 break
             else:
                 print("Come on now😉 Please enter your username!")
+                
+        while True:
+            self.password = input("Enter password: ")
+            if re.search(r"[0-9]", self.password) and len(self.password) >= 4:
+                break
+            else:
+                print("Password should have at least 1 number! and should be four characters or more.")
+
         while True:
             self.email_address = input("Email: ")
             if validators.email(self.email_address):
                 break
             else:
-                print("Invalid email!")
-        while True:
-            self.password = input("Email password: ")
-            if re.search(r"[0-9]", self.password) and len(self.password) >= 4:
-                break
-            else:
-                print("Password should have at least 1 number! and should be four characters or more.")
-                
+                print("Invalid email!")        
             
 
     # a method that returns the user to initially create an account
