@@ -84,6 +84,7 @@ class Account:
             else:
                 print("Invalid option! Choose option in the range given![1 - 7]")
 
+
     # a method that prompts the user to choose which exact account they want to create.
     def third_options(self):
         while True:
@@ -239,6 +240,7 @@ class Account:
         print(tabulate(self.table, headers="firstrow", tablefmt="grid"))
 
 
+    # a method that allows users to exit the system completely
     def exit_program(self):
         sys.exit("Goodbye!👋")
 
