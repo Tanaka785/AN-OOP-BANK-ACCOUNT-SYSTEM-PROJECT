@@ -182,10 +182,14 @@ class Account:
         if self.source_account == 1:
             checkings.balance += self.amount
             savings.balance -= self.amount
+            self.record = [date.today(), "Transfer", f"${self.amount:.2f}(Savings)"]
+            self.statement_records(self.record)
             print(f"${self.amount:.2f} transfered successfuly from 'savings' to 'checkings'")
         elif self.source_account == 2:
             savings.balance += self.amount
             checkings.balance -= self.amount
+            self.record = [date.today(), "Transfer", f"${self.amount:.2f}(Checkings)"]
+            self.statement_records(self.record)
             print(f"${self.amount:.2f} transferred successfully from 'checkings' to 'savings'")
         print()
         print("New balances: ")
