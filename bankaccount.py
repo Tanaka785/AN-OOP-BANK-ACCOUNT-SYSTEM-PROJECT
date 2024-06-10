@@ -143,6 +143,8 @@ class Account:
                     )
                 else:
                     self.balance -= self.amount_to_withdraw
+                    self.record = [date.today(), "Withdraw", f"${self.amount_to_withdraw:.2f}"]
+                    self.statement_records(self.record)
                     return self.balance
                 
     # a method that allows the user to check their respective account balance
@@ -312,6 +314,8 @@ def options_2(account):
             if source == 1:
                 savings.balance -= amount
                 checkings.balance += amount
+                record = [date.today(), "Transfer", f"${amount:.2f}(Savings)"]
+                savings.statement_records(record)
                 print(
                     f"${amount:.2f} was successfully transfered from 'savings' account to 'checkings' account."
                 )
@@ -322,6 +326,8 @@ def options_2(account):
             elif source == 2:
                 checkings.balance -= amount
                 savings.balance += amount
+                record = [date.today(), "Transfer", f"${amount:.2f}(Checkings)"]
+                checkings.statement_records(record)
                 print(
                     f"${amount:.2f} was successfully transferred from 'checkings' account to 'savings' account."
                 )
