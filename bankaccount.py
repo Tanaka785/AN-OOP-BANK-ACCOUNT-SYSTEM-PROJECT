@@ -73,6 +73,7 @@ class Account:
             else:
                 print("Invalid option! Choose either '1' or '2'")
 
+
     # a method that prompts the user with the various options in the system e.g depositing money and returns the chosen option
     def second_options(self):
         while True:
@@ -121,7 +122,7 @@ class Account:
                 print("Please enter a valid amount to deposit!")
             else:
                 if self.amount_to_deposit < 1:
-                    print("Deposit is only allowed from $1.00 and above! Try again..")
+                    print("Deposit is only allowed from $1.00 and above! Try again...")
                 else:
                     self.balance += self.amount_to_deposit
                     self.record = [date.today(), "Deposit", f"${self.amount_to_deposit:.2f}"]
@@ -176,7 +177,7 @@ class Account:
                         "Please enter a value greater than $0.00. And also make sure you have sufficient funds in your account!"
                     )
 
-
+    # a method for transferring money between savings account and checkings account
     def transfer_money(self, source, amount):
         self.source_account = source 
         self.amount = amount 
@@ -229,7 +230,7 @@ class Account:
             print("Enter either '1' or '2'.")
             return False
 
-    # a method to generate a general statement of the user's transactionss
+    # a method to generate a statement of the user's transactionss
     def statement_records(self, record):
         self.record = record
         self.table.append(self.record)
@@ -311,15 +312,10 @@ def options_2(account):
             options_3(account)
         elif option2 == 2:
             account.deposit()
-            print("Deposit successful!")
-            print(account)
         elif option2 == 3:
             account.withdraw()
-            print("Withdraw successful!")
-            print(account)
         elif option2 == 4:
             account.check_balance()
-            print(account)
         elif option2 == 5:
             account.get_transfer_details()
         elif option2 == 6:
