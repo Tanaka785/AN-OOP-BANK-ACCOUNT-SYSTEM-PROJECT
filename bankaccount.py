@@ -21,7 +21,7 @@ class Account:
             "3. Withdraw money",
             "4. Check Balance",
             "5. Transfer money",
-            "6. General statement",
+            "6. Generate statement",
             "7. Quit",
         ]
         self.options2 = ["1. Savings", "2. Checkings", "3. Credit", "4. Quit"]
@@ -116,19 +116,22 @@ class Account:
         self.account_option = self.third_options()
         if self.account_option == 1:
             savings = Savings_account()
-            return savings
+            return (savings, self.account_option, "Savings")
         elif self.account_option == 2:
             checkings = Checkings_account()
-            return checkings
+            return (checkings, self.account_option, "Checkings")
         elif self.account_option == 3:
             credit = Credit_account()
-            return credit
+            return (credit, self.account_option, "Credit")
 
     # a method for allowing the user to deposit money into their account
     def deposit(self):
         while True:
             print("Which account to you want to deposit in? ")
-            account = self.get_account_to_use()
+            self.returned_tuple= self.get_account_to_use()
+            account = self.returned_tuple[0]
+            option = self.returned_tuple[1]
+            actual_account_name = self.returned_tuple[2]
             try:
                 self.amount_to_deposit = float(
                     input("HOW MUCH DO YOU WANT TO DEPOSIT: ").strip()
@@ -139,10 +142,11 @@ class Account:
                 if self.amount_to_deposit < 1:
                     print("Deposit is only allowed from $1.00 and above! Try again...")
                 else:
-                    self.balance += self.amount_to_deposit
-                    self.record = [date.today(), "Deposit", f"${self.amount_to_deposit:.2f}"]
+                    account.balance += self.amount_to_deposit
+                    self.record = [date.today(), "Deposit", f"${self.amount_to_deposit:.2f}({actual_account_name})"]
                     self.statement_records(self.record)
-                    return self.balance
+                    print(f"${self.amount_to_deposit:.2f} was successfully deposited into {actual_account_name} account. {actual_account_name} balance: ${account.balance:.2f}")
+                    return account.balance
 
     # a method that allows users to withdraw money from their account
     def withdraw(self):
