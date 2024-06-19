@@ -111,9 +111,24 @@ class Account:
             print("Please enter a valid integer value for the option!")
             return False
 
+    # a method that gets the account a user wants to deposit, withdraw, check balances, generate statement for
+    def get_account_to_use(self):
+        self.account_option = self.third_options()
+        if self.account_option == 1:
+            savings = Savings_account()
+            return savings
+        elif self.account_option == 2:
+            checkings = Checkings_account()
+            return checkings
+        elif self.account_option == 3:
+            credit = Credit_account()
+            return credit
+
     # a method for allowing the user to deposit money into their account
     def deposit(self):
         while True:
+            print("Which account to you want to deposit in? ")
+            account = self.get_account_to_use()
             try:
                 self.amount_to_deposit = float(
                     input("HOW MUCH DO YOU WANT TO DEPOSIT: ").strip()
