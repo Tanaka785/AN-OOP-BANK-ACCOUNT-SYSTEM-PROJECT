@@ -116,22 +116,31 @@ class Account:
         self.account_option = self.third_options()
         if self.account_option == 1:
             savings = Savings_account()
-            return (savings, self.account_option, "Savings")
+            return (savings, "Savings")
         elif self.account_option == 2:
             checkings = Checkings_account()
-            return (checkings, self.account_option, "Checkings")
+            return (checkings, "Checkings")
         elif self.account_option == 3:
             credit = Credit_account()
-            return (credit, self.account_option, "Credit")
+            return (credit, "Credit")
+        elif self.account_option == 4:
+            self.exit_program()
+
+
+    # a method for returning account details, which includes the account name, option chosen by the user
+    def return_details(self):
+        self.returned_tuple = self.get_account_to_use()
+        account = self.returned_tuple[0]
+        actual_account_name = self.returned_tuple[1]
+        return (account, actual_account_name)
+    
 
     # a method for allowing the user to deposit money into their account
     def deposit(self):
         while True:
-            print("Which account to you want to deposit in? ")
-            self.returned_tuple= self.get_account_to_use()
-            account = self.returned_tuple[0]
-            option = self.returned_tuple[1]
-            actual_account_name = self.returned_tuple[2]
+            print("Which account do you want to deposit in? ")
+            self.returned_tuple = self.return_details()
+            account, actual_account_name = self.returned_tuple
             try:
                 self.amount_to_deposit = float(
                     input("HOW MUCH DO YOU WANT TO DEPOSIT: ").strip()
@@ -151,6 +160,7 @@ class Account:
     # a method that allows users to withdraw money from their account
     def withdraw(self):
         while True:
+            print("Which account do you want to withdraw from? ")
             try:
                 self.amount_to_withdraw = float(
                     input("HOW MUCH DO YOU WANT TO WITHDRAW: ").strip()
